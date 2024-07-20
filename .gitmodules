@@ -1,0 +1,3 @@
+[submodule "ANARI-SDK"]
+	path = ANARI-SDK
+	url = https://github.com/KhronosGroup/ANARI-SDK.git

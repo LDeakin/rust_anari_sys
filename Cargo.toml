@@ -1,0 +1,47 @@
+[package]
+name = "anari_sys"
+version = "0.1.0+anari.0.10.0"
+authors = ["Lachlan Deakin <ljdgit@gmail.com>"]
+edition = "2021"
+description = "FFI bindings for the ANARI frontend library, a 3D rendering engine interface API"
+documentation = "https://docs.rs/anari_sys"
+repository = "https://github.com/LDeakin/rust_anari_sys"
+license = "Apache-2.0"
+keywords = ["anari"]
+categories = ["external-ffi-bindings"]
+include = [
+    "README.md",
+    "CHANGELOG.md",
+    "LICENCE",
+    "build.rs",
+    "/src/",
+    "/ANARI-SDK/CMakeLists.txt",
+    "/ANARI-SDK/src/anari/anari_sdk_version.h.in",
+    "/ANARI-SDK/src/anari/API.cpp",
+    "/ANARI-SDK/src/anari/DeviceImpl.cpp",
+    "/ANARI-SDK/src/anari/LibraryImpl.cpp",
+    "/ANARI-SDK/src/anari/anari_cpp_linalg_defs.cpp",
+    "/ANARI-SDK/src/anari/anari_cpp_std_defs.cpp",
+    "/ANARI-SDK/src/anari/include/anari/anari.h",
+    "/ANARI-SDK/src/anari/include/anari/frontend/anari_enums.h",
+    "/ANARI-SDK/src/anari/include/anari/backend/DeviceImpl.h",
+    "/ANARI-SDK/src/anari/include/anari/backend/LibraryImpl.h",
+    "/ANARI-SDK/src/anari/include/anari/anari_cpp/Traits.h",
+    "/ANARI-SDK/src/anari/include/anari/anari_cpp/ext/linalg.h",
+    "/ANARI-SDK/src/anari/include/anari/anari_cpp/ext/std.h",
+    "/ANARI-SDK/src/anari/include/anari/ext/anari_ext_interface.h",
+    # "/ANARI-SDK/src/anari/include/anari/frontend/anari_extension_utility.h",
+    # "/ANARI-SDK/src/anari/include/anari/frontend/type_utility.h",
+    # "/ANARI-SDK/src/anari/include/anari/ext/anari_debug.h",
+]
+links = "anari"
+
+[features]
+bindgen = ["dep:bindgen"]
+
+[dependencies]
+link-cplusplus = { version = "1.0.9" }
+
+[build-dependencies]
+bindgen = { version = "0.69.4", optional = true }
+cc = "1.0.99"
