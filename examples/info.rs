@@ -1,17 +1,19 @@
 #![allow(non_snake_case)]
+#![allow(unused_imports)]
 
 use std::{
     ffi::{CStr, CString},
+    mem::MaybeUninit,
     process::ExitCode,
     ptr,
 };
 
 use anari_sys::{
-    anariGetDeviceExtensions, anariGetObjectInfo, anariGetParameterInfo, anariNewDevice,
-    ANARIDataType, ANARIDevice, ANARIObject, ANARIParameter, ANARIStatusCode, ANARIStatusSeverity,
-    ANARI_BOOL, ANARI_PARAMETER_LIST, ANARI_RENDERER, ANARI_SEVERITY_DEBUG, ANARI_SEVERITY_ERROR,
-    ANARI_SEVERITY_FATAL_ERROR, ANARI_SEVERITY_INFO, ANARI_SEVERITY_PERFORMANCE_WARNING,
-    ANARI_SEVERITY_WARNING, ANARI_STRING,
+    anariGetDeviceExtensionStruct, anariGetDeviceExtensions, anariGetObjectInfo,
+    anariGetParameterInfo, anariNewDevice, ANARIDataType, ANARIDevice, ANARIObject, ANARIParameter,
+    ANARIStatusCode, ANARIStatusSeverity, ANARI_BOOL, ANARI_PARAMETER_LIST, ANARI_RENDERER,
+    ANARI_SEVERITY_DEBUG, ANARI_SEVERITY_ERROR, ANARI_SEVERITY_FATAL_ERROR, ANARI_SEVERITY_INFO,
+    ANARI_SEVERITY_PERFORMANCE_WARNING, ANARI_SEVERITY_WARNING, ANARI_STRING,
 };
 
 unsafe extern "C" fn status_callback(
@@ -97,14 +99,15 @@ fn main() -> ExitCode {
             extensions = unsafe { extensions.add(1) };
         }
     }
-    // let extensions: *mut anari_sys::ANARIExtensions = ptr::null_mut();
+    // let mut extensions: MaybeUninit<anari_sys::ANARIExtensions> = MaybeUninit::uninit();
     // assert_eq!(
-    //     unsafe { anariGetDeviceExtensionStruct(extensions, library, device_name.as_ptr()) },
+    //     unsafe {
+    //         anariGetDeviceExtensionStruct(extensions.as_mut_ptr(), library, device_name.as_ptr())
+    //     },
     //     0
     // );
-    // if !extensions.is_null() {
-    //     println!("{:?}", unsafe { *extensions });
-    // }
+    // let extensions = unsafe { extensions.assume_init() };
+    // println!("{:#?}", extensions);
 
     // Create a new device
     let dev = unsafe { anariNewDevice(library, device_name.as_ptr()) };

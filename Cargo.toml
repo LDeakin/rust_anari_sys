@@ -1,6 +1,6 @@
 [package]
 name = "anari_sys"
-version = "0.1.0+anari.0.10.0"
+version = "0.1.1+anari.0.10.1"
 authors = ["Lachlan Deakin <ljdgit@gmail.com>"]
 edition = "2021"
 description = "FFI bindings for the ANARI frontend library, a 3D rendering engine interface API"
@@ -30,9 +30,9 @@ include = [
     "/ANARI-SDK/src/anari/include/anari/anari_cpp/ext/linalg.h",
     "/ANARI-SDK/src/anari/include/anari/anari_cpp/ext/std.h",
     "/ANARI-SDK/src/anari/include/anari/ext/anari_ext_interface.h",
-    # "/ANARI-SDK/src/anari/include/anari/frontend/anari_extension_utility.h",
+    "/ANARI-SDK/src/anari/include/anari/frontend/anari_extension_utility.h",
     # "/ANARI-SDK/src/anari/include/anari/frontend/type_utility.h",
-    # "/ANARI-SDK/src/anari/include/anari/ext/anari_debug.h",
+    "/ANARI-SDK/src/anari/include/anari/ext/anari_debug.h",
 ]
 links = "anari"
 

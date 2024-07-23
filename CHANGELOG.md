@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+ - Add bindings for:
+   - `frontend/anari_extension_utility.h`
+   - `frontend/type_utility.h`
+   - `ext/anari_debug.h`
+
+### Changed
+ - Bump `anari` to 0.10.1-dev
+
 ## [0.1.0+anari.0.10.0] - 2024-07-21
 
 ### Added
