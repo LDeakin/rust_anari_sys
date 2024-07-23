@@ -5,7 +5,8 @@ fn get_anari_version_cmake() -> String {
         .expect("Could not find ANARI-SDK/CMakeLists.txt. Update submodules?");
     for line in cmake_version.lines() {
         if line.starts_with("project(anari VERSION ") {
-            return line.strip_prefix("project(anari VERSION ")
+            return line
+                .strip_prefix("project(anari VERSION ")
                 .unwrap()
                 .strip_suffix(" LANGUAGES C CXX)")
                 .unwrap()
@@ -68,8 +69,10 @@ fn compile_anari_cc(dst: &std::path::Path) {
         .file("ANARI-SDK/src/anari/anari_cpp_std_defs.cpp")
         .file("ANARI-SDK/src/anari/API.cpp")
         .file("ANARI-SDK/src/anari/DeviceImpl.cpp")
-        .file("ANARI-SDK/src/anari/LibraryImpl.cpp");
-    // TODO: ext utilities?
+        .file("ANARI-SDK/src/anari/LibraryImpl.cpp")
+        .file("src/anari_extension_utility.cpp")
+        // .file("src/type_utility.cpp")
+    ;
 
     if cfg!(windows) {
         build.define("_USE_MATH_DEFINES", None);
@@ -146,16 +149,17 @@ fn generate_bindings(out_path: &std::path::Path) {
     let bindings = bindgen::Builder::default()
         .header("ANARI-SDK/src/anari/include/anari/anari.h")
         .header_contents("frontend/anari_enums.h", &anari_enums_fix)
-        // .header("ANARI-SDK/src/anari/include/anari/frontend/anari_extension_utility.h")
+        .header("ANARI-SDK/src/anari/include/anari/frontend/anari_extension_utility.h")
         // .header("ANARI-SDK/src/anari/include/anari/frontend/type_utility.h")
-        // .header("ANARI-SDK/src/anari/include/anari/ext/anari_ext_interface.h")
-        // .header("ANARI-SDK/src/anari/include/anari/ext/anari_debug.h")
+        .header("ANARI-SDK/src/anari/include/anari/ext/anari_ext_interface.h")
+        .header("ANARI-SDK/src/anari/include/anari/ext/anari_debug.h")
         .clang_arg("-IANARI-SDK/src/anari/include")
         .clang_arg(format!(
             "-I{}",
             out_path.join("include/anari").to_str().unwrap()
         ))
-        .allowlist_item(".*[Aa]nari.*")
+        .clang_arg("-Dinline=")
+        .allowlist_item(".*[Aa]nari[^_]*") // skip anari_ functions in type_utility.h
         .allowlist_item(".*ANARI.*")
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
         .parse_callbacks(Box::new(ReplaceDefs))
@@ -170,8 +174,11 @@ fn generate_bindings(out_path: &std::path::Path) {
 
 fn main() {
     println!("cargo:rustc-link-lib=static=anari");
+    println!("cargo::rerun-if-changed=ANARI-SDK/");
 
     let dst = std::path::PathBuf::from(std::env::var_os("OUT_DIR").unwrap());
+
+    let _ = std::fs::remove_dir_all(dst.join("include/anari"));
 
     create_version_header(&dst);
 
@@ -180,17 +187,23 @@ fn main() {
     #[cfg(feature = "bindgen")]
     generate_bindings(&dst);
 
-    std::fs::create_dir_all(dst.join("include/anari/frontend")).unwrap();
-    std::fs::copy(
-        "ANARI-SDK/src/anari/include/anari/anari.h",
-        dst.join("include/anari/anari.h"),
-    )
-    .unwrap();
-    std::fs::copy(
-        "ANARI-SDK/src/anari/include/anari/frontend/anari_enums.h",
-        dst.join("include/anari/frontend/anari_enums.h"),
-    )
-    .unwrap();
+    // std::fs::create_dir_all(dst.join("include/anari/frontend")).unwrap();
+    // std::fs::create_dir_all(dst.join("include/anari/ext")).unwrap();
+    // for f in [
+    //     "anari.h",
+    //     "frontend/anari_enums.h",
+    //     "frontend/anari_extension_utility.h",
+    //     "ext/anari_ext_interface.h",
+    //     "ext/anari_debug.h",
+    // ]
+    // .iter()
+    // {
+    //     std::fs::copy(
+    //         format!("ANARI-SDK/src/anari/include/anari/{}", f),
+    //         dst.join(format!("include/anari/{}", f)),
+    //     )
+    //     .unwrap();
+    // }
 
     println!("cargo:root={}", dst.to_str().unwrap());
     println!("cargo:include={}/include", dst.to_str().unwrap());
