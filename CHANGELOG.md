@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
  - Bump `anari` to 0.10.1-dev
  - Bump `bindgen` to 0.70
+ - Set MSRV to 1.77
 
 ## [0.1.0+anari.0.10.0] - 2024-07-21
 
