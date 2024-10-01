@@ -174,7 +174,7 @@ fn generate_bindings(out_path: &std::path::Path) {
 
 fn main() {
     println!("cargo:rustc-link-lib=static=anari");
-    println!("cargo::rerun-if-changed=ANARI-SDK/");
+    println!("cargo:rerun-if-changed=ANARI-SDK/");
 
     let dst = std::path::PathBuf::from(std::env::var_os("OUT_DIR").unwrap());
 
