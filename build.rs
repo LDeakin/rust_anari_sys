@@ -1,19 +1,43 @@
 use core::panic;
 
+fn extract_version(line: &str, prefix: &str) -> Option<u32> {
+    if line.starts_with(prefix) {
+        Some(
+            line.strip_prefix(prefix)
+                .unwrap()
+                .strip_suffix(")")
+                .unwrap()
+                .parse::<u32>()
+                .expect(&format!("{} is not an integer", prefix)),
+        )
+    } else {
+        None
+    }
+}
+
 fn get_anari_version_cmake() -> String {
     let cmake_version = std::fs::read_to_string("ANARI-SDK/CMakeLists.txt")
         .expect("Could not find ANARI-SDK/CMakeLists.txt. Update submodules?");
+    let mut major_version = None;
+    let mut minor_version = None;
+    let mut patch_version = None;
     for line in cmake_version.lines() {
-        if line.starts_with("project(anari VERSION ") {
-            return line
-                .strip_prefix("project(anari VERSION ")
-                .unwrap()
-                .strip_suffix(" LANGUAGES C CXX)")
-                .unwrap()
-                .to_string();
+        if line.starts_with("set(ANARI_SDK_VERSION") {
+            if let Some(version) = extract_version(&line, "set(ANARI_SDK_VERSION_MAJOR ") {
+                major_version = Some(version);
+            } else if let Some(version) = extract_version(&line, "set(ANARI_SDK_VERSION_MINOR ") {
+                minor_version = Some(version);
+            } else if let Some(version) = extract_version(&line, "set(ANARI_SDK_VERSION_PATCH ") {
+                patch_version = Some(version);
+            }
         }
     }
-    panic!("Could not find anari version in ANARI-SDK/CMakeLists.txt");
+
+    if let (Some(major), Some(minor), Some(patch)) = (major_version, minor_version, patch_version) {
+        return format!("{}.{}.{}", major, minor, patch);
+    } else {
+        panic!("Could not find anari version in ANARI-SDK/CMakeLists.txt");
+    }
 }
 
 fn get_anari_version() -> (u32, u32, u32) {
@@ -24,7 +48,7 @@ fn get_anari_version() -> (u32, u32, u32) {
         _ => panic!("Could not identify anari version from crate version"),
     };
     if get_anari_version_cmake() != anari_version {
-        panic!("Crate version does not match cmake version of ANARI-SDK");
+        panic!("Crate version does not match cmake version of ANARI-SDK: got:{anari_version} expected:{}", get_anari_version_cmake());
     }
     let anari_versions = anari_version.split('.').collect::<Vec<_>>();
     match &anari_versions[..] {
