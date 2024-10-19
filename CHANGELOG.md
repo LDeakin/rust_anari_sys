@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
    - `ext/anari_debug.h`
 
 ### Changed
- - Bump `anari` to 0.10.1-dev
+ - Bump `anari` to 0.11.0
  - Bump `bindgen` to 0.70
  - Set MSRV to 1.77
 
