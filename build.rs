@@ -71,9 +71,9 @@ fn create_version_header(out_path: &std::path::Path) {
     let (anari_ver_major, anari_ver_minor, anari_ver_patch) = get_anari_version();
     let anari_sdk_version = std::fs::read_to_string("ANARI-SDK/src/anari/anari_sdk_version.h.in")
         .expect("Could not find ANARI-SDK/src/anari/anari_sdk_version.h.in. Update submodules?")
-        .replace("@anari_VERSION_MAJOR@", &anari_ver_major.to_string())
-        .replace("@anari_VERSION_MINOR@", &anari_ver_minor.to_string())
-        .replace("@anari_VERSION_PATCH@", &anari_ver_patch.to_string());
+        .replace("@ANARI_SDK_VERSION_MAJOR@", &anari_ver_major.to_string())
+        .replace("@ANARI_SDK_VERSION_MINOR@", &anari_ver_minor.to_string())
+        .replace("@ANARI_SDK_VERSION_PATCH@", &anari_ver_patch.to_string());
     let out_path = out_path.join("include/anari/frontend");
     std::fs::create_dir_all(&out_path).unwrap_or_else(|_| panic!("Unable to write {out_path:?}"));
     let out_path = out_path.join("anari_sdk_version.h");
