@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Bump `ANARI-SDK` to 0.12.0
+- Bump `bindgen` to 0.71
 
 ## [0.1.2+anari.0.11.1] - 2024-10-30
 

@@ -187,6 +187,7 @@ fn generate_bindings(out_path: &std::path::Path) {
         .allowlist_item(".*ANARI.*")
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
         .parse_callbacks(Box::new(ReplaceDefs))
+        .rust_target(unsafe { bindgen::RustTarget::stable(77, 0).unwrap_unchecked() })
         .generate()
         .expect("Unable to generate bindings");
 
