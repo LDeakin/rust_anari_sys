@@ -8,7 +8,7 @@ fn extract_version(line: &str, prefix: &str) -> Option<u32> {
                 .strip_suffix(")")
                 .unwrap()
                 .parse::<u32>()
-                .expect(&format!("{} is not an integer", prefix)),
+                .unwrap_or_else(|_| panic!("{} is not an integer", prefix)),
         )
     } else {
         None
@@ -23,18 +23,18 @@ fn get_anari_version_cmake() -> String {
     let mut patch_version = None;
     for line in cmake_version.lines() {
         if line.starts_with("set(ANARI_SDK_VERSION") {
-            if let Some(version) = extract_version(&line, "set(ANARI_SDK_VERSION_MAJOR ") {
+            if let Some(version) = extract_version(line, "set(ANARI_SDK_VERSION_MAJOR ") {
                 major_version = Some(version);
-            } else if let Some(version) = extract_version(&line, "set(ANARI_SDK_VERSION_MINOR ") {
+            } else if let Some(version) = extract_version(line, "set(ANARI_SDK_VERSION_MINOR ") {
                 minor_version = Some(version);
-            } else if let Some(version) = extract_version(&line, "set(ANARI_SDK_VERSION_PATCH ") {
+            } else if let Some(version) = extract_version(line, "set(ANARI_SDK_VERSION_PATCH ") {
                 patch_version = Some(version);
             }
         }
     }
 
     if let (Some(major), Some(minor), Some(patch)) = (major_version, minor_version, patch_version) {
-        return format!("{}.{}.{}", major, minor, patch);
+        format!("{}.{}.{}", major, minor, patch)
     } else {
         panic!("Could not find anari version in ANARI-SDK/CMakeLists.txt");
     }
