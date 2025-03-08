@@ -2,8 +2,8 @@
 
 pub const ANARI_INVALID_HANDLE: ::std::os::raw::c_int = 0;
 pub const ANARI_SDK_VERSION_MAJOR: ::std::os::raw::c_int = 0;
-pub const ANARI_SDK_VERSION_MINOR: ::std::os::raw::c_int = 12;
-pub const ANARI_SDK_VERSION_PATCH: ::std::os::raw::c_int = 1;
+pub const ANARI_SDK_VERSION_MINOR: ::std::os::raw::c_int = 13;
+pub const ANARI_SDK_VERSION_PATCH: ::std::os::raw::c_int = 0;
 pub const ANARI_LOG_DEBUG: ::std::os::raw::c_int = 1;
 pub const ANARI_LOG_INFO: ::std::os::raw::c_int = 2;
 pub const ANARI_LOG_WARNING: ::std::os::raw::c_int = 3;
