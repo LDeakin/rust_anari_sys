@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Include `Cargo.lock` in releases
+
 ## [0.1.6+anari.0.13.1] - 2025-03-12
 
 ### Changed

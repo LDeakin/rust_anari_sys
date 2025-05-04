@@ -11,6 +11,7 @@ license = "Apache-2.0"
 keywords = ["anari"]
 categories = ["external-ffi-bindings"]
 include = [
+    "Cargo.lock",
     "README.md",
     "CHANGELOG.md",
     "LICENCE",
