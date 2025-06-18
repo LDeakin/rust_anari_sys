@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bump `ANARI-SDK` to 0.14.0
 
 ### Fixed
-- Include `Cargo.lock` in releases
+- Include `Cargo.lock` and `/examples/` in releases
 
 ## [0.1.6+anari.0.13.1] - 2025-03-12
 

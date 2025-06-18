@@ -17,6 +17,7 @@ include = [
     "LICENCE",
     "build.rs",
     "/src/",
+    "/examples/",
     "/ANARI-SDK/CMakeLists.txt",
     "/ANARI-SDK/src/anari/anari_sdk_version.h.in",
     "/ANARI-SDK/src/anari/API.cpp",
