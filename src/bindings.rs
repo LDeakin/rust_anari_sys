@@ -2,8 +2,8 @@
 
 pub const ANARI_INVALID_HANDLE: ::std::os::raw::c_int = 0;
 pub const ANARI_SDK_VERSION_MAJOR: ::std::os::raw::c_int = 0;
-pub const ANARI_SDK_VERSION_MINOR: ::std::os::raw::c_int = 13;
-pub const ANARI_SDK_VERSION_PATCH: ::std::os::raw::c_int = 1;
+pub const ANARI_SDK_VERSION_MINOR: ::std::os::raw::c_int = 14;
+pub const ANARI_SDK_VERSION_PATCH: ::std::os::raw::c_int = 0;
 pub const ANARI_LOG_DEBUG: ::std::os::raw::c_int = 1;
 pub const ANARI_LOG_INFO: ::std::os::raw::c_int = 2;
 pub const ANARI_LOG_WARNING: ::std::os::raw::c_int = 3;
@@ -199,6 +199,24 @@ const _: () = {
     ["Offset of field: ANARIParameter::type_"]
         [::std::mem::offset_of!(ANARIParameter, type_) - 8usize];
 };
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct ANARIParameterValue {
+    pub name: *const ::std::os::raw::c_char,
+    pub type_: ANARIDataType,
+    pub value: *const ::std::os::raw::c_void,
+}
+#[allow(clippy::unnecessary_operation, clippy::identity_op)]
+const _: () = {
+    ["Size of ANARIParameterValue"][::std::mem::size_of::<ANARIParameterValue>() - 24usize];
+    ["Alignment of ANARIParameterValue"][::std::mem::align_of::<ANARIParameterValue>() - 8usize];
+    ["Offset of field: ANARIParameterValue::name"]
+        [::std::mem::offset_of!(ANARIParameterValue, name) - 0usize];
+    ["Offset of field: ANARIParameterValue::type_"]
+        [::std::mem::offset_of!(ANARIParameterValue, type_) - 8usize];
+    ["Offset of field: ANARIParameterValue::value"]
+        [::std::mem::offset_of!(ANARIParameterValue, value) - 16usize];
+};
 pub type ANARIMemoryDeleter = ::std::option::Option<
     unsafe extern "C" fn(
         userPtr: *const ::std::os::raw::c_void,
@@ -243,6 +261,13 @@ extern "C" {
     pub fn anariNewDevice(
         library: ANARILibrary,
         type_: *const ::std::os::raw::c_char,
+    ) -> ANARIDevice;
+}
+extern "C" {
+    pub fn anariNewInitializedDevice(
+        library: ANARILibrary,
+        type_: *const ::std::os::raw::c_char,
+        initializers: *mut ANARIParameterValue,
     ) -> ANARIDevice;
 }
 extern "C" {

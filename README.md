@@ -3,7 +3,7 @@
 [![Latest Version](https://img.shields.io/crates/v/anari_sys.svg)](https://crates.io/crates/anari_sys)
 [![anari_sys documentation](https://docs.rs/anari_sys/badge.svg)](https://docs.rs/anari_sys)
 [![ANARI 1.0](https://img.shields.io/badge/ANARI-1.0-blue)](https://www.khronos.org/registry/ANARI/)
-[![ANARI-SDK 0.13.1](https://img.shields.io/badge/ANARI--SDK-0.13.1-blue)](https://github.com/KhronosGroup/ANARI-SDK)
+[![ANARI-SDK 0.14.0](https://img.shields.io/badge/ANARI--SDK-0.14.0-blue)](https://github.com/KhronosGroup/ANARI-SDK)
 [![build](https://github.com/LDeakin/rust_anari_sys/actions/workflows/ci.yml/badge.svg)](https://github.com/LDeakin/rust_anari_sys/actions/workflows/ci.yml)
 
 Raw Rust bindings to the ANARI frontend library (<https://github.com/KhronosGroup/ANARI-SDK>), a 3D rendering engine interface API.
