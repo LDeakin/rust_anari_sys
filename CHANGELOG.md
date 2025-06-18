@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Bump `ANARI-SDK` to 0.14.0
+- Bump `bindgen` to 0.72
 
 ### Fixed
 - Include `Cargo.lock` and `/examples/` in releases

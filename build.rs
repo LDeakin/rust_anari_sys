@@ -111,9 +111,9 @@ struct ReplaceDefs;
 
 #[cfg(feature = "bindgen")]
 impl bindgen::callbacks::ParseCallbacks for ReplaceDefs {
-    fn item_name(&self, original_item_name: &str) -> Option<String> {
-        println!("original_item_name: {original_item_name}");
-        if original_item_name == "ANARI_DATA_TYPE_DEFINE" {
+    fn item_name(&self, original_item_name: bindgen::callbacks::ItemInfo<'_>) -> Option<String> {
+        println!("original_item_name: {}", original_item_name.name);
+        if original_item_name.name == "ANARI_DATA_TYPE_DEFINE" {
             panic!();
         }
         None
