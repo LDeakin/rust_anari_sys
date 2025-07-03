@@ -1,6 +1,6 @@
 [package]
 name = "anari_sys"
-version = "0.1.7+anari.0.14.0"
+version = "0.1.8+anari.0.14.1"
 rust-version = "1.77"
 authors = ["Lachlan Deakin <ljdgit@gmail.com>"]
 edition = "2021"
