@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.8+anari.0.14.1] - 2025-06-18
+
 ### Changed
 - Bump `ANARI-SDK` to 0.14.1
 
@@ -67,7 +69,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release of `anari_sys` with `ANARI-SDK` 0.10.0
 
-[unreleased]: https://github.com/LDeakin/rust_anari_sys/compare/0.1.7+anari.0.14.0...HEAD
+[unreleased]: https://github.com/LDeakin/rust_anari_sys/compare/0.1.8+anari.0.14.1...HEAD
+[0.1.8+anari.0.14.1]: https://github.com/LDeakin/rust_anari_sys/releases/tag/v0.1.7+anari.0.14.1
 [0.1.7+anari.0.14.0]: https://github.com/LDeakin/rust_anari_sys/releases/tag/v0.1.7+anari.0.14.0
 [0.1.6+anari.0.13.1]: https://github.com/LDeakin/rust_anari_sys/releases/tag/v0.1.6+anari.0.13.1
 [0.1.5+anari.0.13.0]: https://github.com/LDeakin/rust_anari_sys/releases/tag/v0.1.5+anari.0.13.0
