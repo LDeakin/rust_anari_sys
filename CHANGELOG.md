@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- **Breaking**: Bump `ANARI-SDK` to 0.15.0
+  - `ANARIExtensions` has new fields:
+    - `ANARI_KHR_DATA_PARALLEL_MPI`
+    - `ANARI_KHR_SPATIAL_FIELD_NANOVDB`
+    - `ANARI_KHR_SPATIAL_FIELD_STRUCTURED_REGULAR_CUBIC`
+    - `ANARI_KHR_SPATIAL_FIELD_UNSTRUCTURED`
+  - `ANARIExtensions` fields have been reordered
+
 ## [0.1.8+anari.0.14.1] - 2025-06-18
 
 ### Changed
