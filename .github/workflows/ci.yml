@@ -89,3 +89,29 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - run: cargo install cargo-hack cargo-minimal-versions --locked
       - run: cargo minimal-versions check --direct
+  test_helide:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Install build tools
+        run: sudo apt-get update && sudo apt-get install -y ninja-build
+      - name: Build the ANARI helide device library
+        run: |
+          cmake -S ANARI-SDK -B sdk-build -GNinja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_SHARED_LIBS=ON \
+            -DBUILD_TESTING=OFF \
+            -DBUILD_EXAMPLES=OFF \
+            -DBUILD_VIEWER=OFF \
+            -DBUILD_CTS=OFF \
+            -DINSTALL_VIEWER_LIBRARY=OFF
+          cmake --build sdk-build --target anari_library_helide
+      - name: Run the info example against helide
+        run: cargo run --example info helide
+        env:
+          # ANARI loads `libanari_library_helide.so` at runtime via dlopen.
+          LD_LIBRARY_PATH: ${{ github.workspace }}/sdk-build
