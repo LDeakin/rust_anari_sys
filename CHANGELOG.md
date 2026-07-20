@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Renamed `ANARI_KHR_SPATIAL_FIELD_STRUCTURED_REGULAR_CUBIC` to `ANARI_KHR_SPATIAL_FIELD_STRUCTURED_REGULAR_FILTER_CUBIC`
     - Removed `ANARI_KHR_AREA_LIGHTS`
     - Fields have been reordered
+ - Bump MSRV to 1.85
 
 ## [0.2.0+anari.0.15.0] - 2025-11-08
 
