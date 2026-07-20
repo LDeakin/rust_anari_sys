@@ -2,7 +2,7 @@
 
 pub const ANARI_INVALID_HANDLE: ::std::os::raw::c_int = 0;
 pub const ANARI_SDK_VERSION_MAJOR: ::std::os::raw::c_int = 0;
-pub const ANARI_SDK_VERSION_MINOR: ::std::os::raw::c_int = 15;
+pub const ANARI_SDK_VERSION_MINOR: ::std::os::raw::c_int = 16;
 pub const ANARI_SDK_VERSION_PATCH: ::std::os::raw::c_int = 0;
 pub const ANARI_LOG_DEBUG: ::std::os::raw::c_int = 1;
 pub const ANARI_LOG_INFO: ::std::os::raw::c_int = 2;
@@ -522,20 +522,25 @@ extern "C" {
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct ANARIExtensions {
-    pub ANARI_KHR_LIGHT_DIRECTIONAL: ::std::os::raw::c_int,
-    pub ANARI_KHR_LIGHT_POINT: ::std::os::raw::c_int,
-    pub ANARI_KHR_LIGHT_RING: ::std::os::raw::c_int,
-    pub ANARI_KHR_LIGHT_QUAD: ::std::os::raw::c_int,
-    pub ANARI_KHR_LIGHT_HDRI: ::std::os::raw::c_int,
     pub ANARI_KHR_CAMERA_SHUTTER: ::std::os::raw::c_int,
+    pub ANARI_KHR_INSTANCE_TRANSFORM: ::std::os::raw::c_int,
+    pub ANARI_KHR_LIGHT_DIRECTIONAL: ::std::os::raw::c_int,
+    pub ANARI_KHR_LIGHT_HDRI: ::std::os::raw::c_int,
+    pub ANARI_KHR_LIGHT_POINT: ::std::os::raw::c_int,
+    pub ANARI_KHR_LIGHT_QUAD: ::std::os::raw::c_int,
+    pub ANARI_KHR_LIGHT_RING: ::std::os::raw::c_int,
+    pub ANARI_KHR_LIGHT_SPOT: ::std::os::raw::c_int,
+    pub ANARI_KHR_SAMPLER_IMAGE1D: ::std::os::raw::c_int,
+    pub ANARI_KHR_SAMPLER_IMAGE2D: ::std::os::raw::c_int,
+    pub ANARI_KHR_SAMPLER_IMAGE3D: ::std::os::raw::c_int,
     pub ANARI_KHR_SPATIAL_FIELD_STRUCTURED_REGULAR: ::std::os::raw::c_int,
-    pub ANARI_KHR_AREA_LIGHTS: ::std::os::raw::c_int,
     pub ANARI_KHR_ARRAY1D_REGION: ::std::os::raw::c_int,
     pub ANARI_KHR_CAMERA_DEPTH_OF_FIELD: ::std::os::raw::c_int,
     pub ANARI_KHR_CAMERA_MOTION_TRANSFORMATION: ::std::os::raw::c_int,
     pub ANARI_KHR_CAMERA_OMNIDIRECTIONAL: ::std::os::raw::c_int,
     pub ANARI_KHR_CAMERA_ORTHOGRAPHIC: ::std::os::raw::c_int,
     pub ANARI_KHR_CAMERA_PERSPECTIVE: ::std::os::raw::c_int,
+    pub ANARI_KHR_CAMERA_ROLLING_SHUTTER: ::std::os::raw::c_int,
     pub ANARI_KHR_CAMERA_STEREO: ::std::os::raw::c_int,
     pub ANARI_KHR_DATA_PARALLEL_MPI: ::std::os::raw::c_int,
     pub ANARI_KHR_DEVICE_SYNCHRONIZATION: ::std::os::raw::c_int,
@@ -549,6 +554,7 @@ pub struct ANARIExtensions {
     pub ANARI_KHR_GEOMETRY_CONE: ::std::os::raw::c_int,
     pub ANARI_KHR_GEOMETRY_CURVE: ::std::os::raw::c_int,
     pub ANARI_KHR_GEOMETRY_CYLINDER: ::std::os::raw::c_int,
+    pub ANARI_KHR_GEOMETRY_ISOSURFACE: ::std::os::raw::c_int,
     pub ANARI_KHR_GEOMETRY_QUAD: ::std::os::raw::c_int,
     pub ANARI_KHR_GEOMETRY_QUAD_MOTION_DEFORMATION: ::std::os::raw::c_int,
     pub ANARI_KHR_GEOMETRY_SPHERE: ::std::os::raw::c_int,
@@ -556,143 +562,154 @@ pub struct ANARIExtensions {
     pub ANARI_KHR_GEOMETRY_TRIANGLE_MOTION_DEFORMATION: ::std::os::raw::c_int,
     pub ANARI_KHR_INSTANCE_MOTION_SCALE_ROTATION_TRANSLATION: ::std::os::raw::c_int,
     pub ANARI_KHR_INSTANCE_MOTION_TRANSFORM: ::std::os::raw::c_int,
-    pub ANARI_KHR_INSTANCE_TRANSFORM: ::std::os::raw::c_int,
-    pub ANARI_KHR_LIGHT_SPOT: ::std::os::raw::c_int,
+    pub ANARI_KHR_INSTANCE_TRANSFORM_ARRAY: ::std::os::raw::c_int,
+    pub ANARI_KHR_LIGHT_PRIMARY_VISIBILITY: ::std::os::raw::c_int,
     pub ANARI_KHR_MATERIAL_MATTE: ::std::os::raw::c_int,
     pub ANARI_KHR_MATERIAL_PHYSICALLY_BASED: ::std::os::raw::c_int,
     pub ANARI_KHR_RENDERER_AMBIENT_LIGHT: ::std::os::raw::c_int,
     pub ANARI_KHR_RENDERER_BACKGROUND_COLOR: ::std::os::raw::c_int,
     pub ANARI_KHR_RENDERER_BACKGROUND_IMAGE: ::std::os::raw::c_int,
-    pub ANARI_KHR_SAMPLER_IMAGE1D: ::std::os::raw::c_int,
-    pub ANARI_KHR_SAMPLER_IMAGE2D: ::std::os::raw::c_int,
-    pub ANARI_KHR_SAMPLER_IMAGE3D: ::std::os::raw::c_int,
+    pub ANARI_KHR_RENDERER_DENOISE: ::std::os::raw::c_int,
+    pub ANARI_KHR_SAMPLER_IMAGExD_CLAMP_TO_BORDER: ::std::os::raw::c_int,
     pub ANARI_KHR_SAMPLER_PRIMITIVE: ::std::os::raw::c_int,
     pub ANARI_KHR_SAMPLER_TRANSFORM: ::std::os::raw::c_int,
     pub ANARI_KHR_SPATIAL_FIELD_NANOVDB: ::std::os::raw::c_int,
-    pub ANARI_KHR_SPATIAL_FIELD_STRUCTURED_REGULAR_CUBIC: ::std::os::raw::c_int,
+    pub ANARI_KHR_SPATIAL_FIELD_STRUCTURED_REGULAR_FILTER_CUBIC: ::std::os::raw::c_int,
     pub ANARI_KHR_SPATIAL_FIELD_UNSTRUCTURED: ::std::os::raw::c_int,
     pub ANARI_KHR_VOLUME_TRANSFER_FUNCTION1D: ::std::os::raw::c_int,
     pub ANARI_EXP_VOLUME_SAMPLE_RATE: ::std::os::raw::c_int,
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {
-    ["Size of ANARIExtensions"][::std::mem::size_of::<ANARIExtensions>() - 204usize];
+    ["Size of ANARIExtensions"][::std::mem::size_of::<ANARIExtensions>() - 224usize];
     ["Alignment of ANARIExtensions"][::std::mem::align_of::<ANARIExtensions>() - 4usize];
-    ["Offset of field: ANARIExtensions::ANARI_KHR_LIGHT_DIRECTIONAL"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_LIGHT_DIRECTIONAL) - 0usize];
-    ["Offset of field: ANARIExtensions::ANARI_KHR_LIGHT_POINT"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_LIGHT_POINT) - 4usize];
-    ["Offset of field: ANARIExtensions::ANARI_KHR_LIGHT_RING"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_LIGHT_RING) - 8usize];
-    ["Offset of field: ANARIExtensions::ANARI_KHR_LIGHT_QUAD"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_LIGHT_QUAD) - 12usize];
-    ["Offset of field: ANARIExtensions::ANARI_KHR_LIGHT_HDRI"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_LIGHT_HDRI) - 16usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_CAMERA_SHUTTER"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_CAMERA_SHUTTER) - 20usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_CAMERA_SHUTTER) - 0usize];
+    ["Offset of field: ANARIExtensions::ANARI_KHR_INSTANCE_TRANSFORM"]
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_INSTANCE_TRANSFORM) - 4usize];
+    ["Offset of field: ANARIExtensions::ANARI_KHR_LIGHT_DIRECTIONAL"]
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_LIGHT_DIRECTIONAL) - 8usize];
+    ["Offset of field: ANARIExtensions::ANARI_KHR_LIGHT_HDRI"]
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_LIGHT_HDRI) - 12usize];
+    ["Offset of field: ANARIExtensions::ANARI_KHR_LIGHT_POINT"]
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_LIGHT_POINT) - 16usize];
+    ["Offset of field: ANARIExtensions::ANARI_KHR_LIGHT_QUAD"]
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_LIGHT_QUAD) - 20usize];
+    ["Offset of field: ANARIExtensions::ANARI_KHR_LIGHT_RING"]
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_LIGHT_RING) - 24usize];
+    ["Offset of field: ANARIExtensions::ANARI_KHR_LIGHT_SPOT"]
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_LIGHT_SPOT) - 28usize];
+    ["Offset of field: ANARIExtensions::ANARI_KHR_SAMPLER_IMAGE1D"]
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_SAMPLER_IMAGE1D) - 32usize];
+    ["Offset of field: ANARIExtensions::ANARI_KHR_SAMPLER_IMAGE2D"]
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_SAMPLER_IMAGE2D) - 36usize];
+    ["Offset of field: ANARIExtensions::ANARI_KHR_SAMPLER_IMAGE3D"]
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_SAMPLER_IMAGE3D) - 40usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_SPATIAL_FIELD_STRUCTURED_REGULAR"][::std::mem::offset_of!(
         ANARIExtensions,
         ANARI_KHR_SPATIAL_FIELD_STRUCTURED_REGULAR
-    ) - 24usize];
-    ["Offset of field: ANARIExtensions::ANARI_KHR_AREA_LIGHTS"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_AREA_LIGHTS) - 28usize];
+    ) - 44usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_ARRAY1D_REGION"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_ARRAY1D_REGION) - 32usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_ARRAY1D_REGION) - 48usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_CAMERA_DEPTH_OF_FIELD"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_CAMERA_DEPTH_OF_FIELD) - 36usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_CAMERA_DEPTH_OF_FIELD) - 52usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_CAMERA_MOTION_TRANSFORMATION"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_CAMERA_MOTION_TRANSFORMATION) - 40usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_CAMERA_MOTION_TRANSFORMATION) - 56usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_CAMERA_OMNIDIRECTIONAL"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_CAMERA_OMNIDIRECTIONAL) - 44usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_CAMERA_OMNIDIRECTIONAL) - 60usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_CAMERA_ORTHOGRAPHIC"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_CAMERA_ORTHOGRAPHIC) - 48usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_CAMERA_ORTHOGRAPHIC) - 64usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_CAMERA_PERSPECTIVE"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_CAMERA_PERSPECTIVE) - 52usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_CAMERA_PERSPECTIVE) - 68usize];
+    ["Offset of field: ANARIExtensions::ANARI_KHR_CAMERA_ROLLING_SHUTTER"]
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_CAMERA_ROLLING_SHUTTER) - 72usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_CAMERA_STEREO"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_CAMERA_STEREO) - 56usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_CAMERA_STEREO) - 76usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_DATA_PARALLEL_MPI"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_DATA_PARALLEL_MPI) - 60usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_DATA_PARALLEL_MPI) - 80usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_DEVICE_SYNCHRONIZATION"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_DEVICE_SYNCHRONIZATION) - 64usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_DEVICE_SYNCHRONIZATION) - 84usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_FRAME_ACCUMULATION"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_FRAME_ACCUMULATION) - 68usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_FRAME_ACCUMULATION) - 88usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_FRAME_CHANNEL_ALBEDO"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_FRAME_CHANNEL_ALBEDO) - 72usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_FRAME_CHANNEL_ALBEDO) - 92usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_FRAME_CHANNEL_INSTANCE_ID"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_FRAME_CHANNEL_INSTANCE_ID) - 76usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_FRAME_CHANNEL_INSTANCE_ID) - 96usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_FRAME_CHANNEL_NORMAL"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_FRAME_CHANNEL_NORMAL) - 80usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_FRAME_CHANNEL_NORMAL) - 100usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_FRAME_CHANNEL_OBJECT_ID"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_FRAME_CHANNEL_OBJECT_ID) - 84usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_FRAME_CHANNEL_OBJECT_ID) - 104usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_FRAME_CHANNEL_PRIMITIVE_ID"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_FRAME_CHANNEL_PRIMITIVE_ID) - 88usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_FRAME_CHANNEL_PRIMITIVE_ID) - 108usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_FRAME_COMPLETION_CALLBACK"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_FRAME_COMPLETION_CALLBACK) - 92usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_FRAME_COMPLETION_CALLBACK) - 112usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_GEOMETRY_CONE"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_GEOMETRY_CONE) - 96usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_GEOMETRY_CONE) - 116usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_GEOMETRY_CURVE"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_GEOMETRY_CURVE) - 100usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_GEOMETRY_CURVE) - 120usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_GEOMETRY_CYLINDER"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_GEOMETRY_CYLINDER) - 104usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_GEOMETRY_CYLINDER) - 124usize];
+    ["Offset of field: ANARIExtensions::ANARI_KHR_GEOMETRY_ISOSURFACE"]
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_GEOMETRY_ISOSURFACE) - 128usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_GEOMETRY_QUAD"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_GEOMETRY_QUAD) - 108usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_GEOMETRY_QUAD) - 132usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_GEOMETRY_QUAD_MOTION_DEFORMATION"][::std::mem::offset_of!(
         ANARIExtensions,
         ANARI_KHR_GEOMETRY_QUAD_MOTION_DEFORMATION
-    ) - 112usize];
+    ) - 136usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_GEOMETRY_SPHERE"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_GEOMETRY_SPHERE) - 116usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_GEOMETRY_SPHERE) - 140usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_GEOMETRY_TRIANGLE"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_GEOMETRY_TRIANGLE) - 120usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_GEOMETRY_TRIANGLE) - 144usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_GEOMETRY_TRIANGLE_MOTION_DEFORMATION"][::std::mem::offset_of!(
         ANARIExtensions,
         ANARI_KHR_GEOMETRY_TRIANGLE_MOTION_DEFORMATION
     )
-        - 124usize];
+        - 148usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_INSTANCE_MOTION_SCALE_ROTATION_TRANSLATION"][::std::mem::offset_of!(
         ANARIExtensions,
         ANARI_KHR_INSTANCE_MOTION_SCALE_ROTATION_TRANSLATION
     )
-        - 128usize];
+        - 152usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_INSTANCE_MOTION_TRANSFORM"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_INSTANCE_MOTION_TRANSFORM) - 132usize];
-    ["Offset of field: ANARIExtensions::ANARI_KHR_INSTANCE_TRANSFORM"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_INSTANCE_TRANSFORM) - 136usize];
-    ["Offset of field: ANARIExtensions::ANARI_KHR_LIGHT_SPOT"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_LIGHT_SPOT) - 140usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_INSTANCE_MOTION_TRANSFORM) - 156usize];
+    ["Offset of field: ANARIExtensions::ANARI_KHR_INSTANCE_TRANSFORM_ARRAY"]
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_INSTANCE_TRANSFORM_ARRAY) - 160usize];
+    ["Offset of field: ANARIExtensions::ANARI_KHR_LIGHT_PRIMARY_VISIBILITY"]
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_LIGHT_PRIMARY_VISIBILITY) - 164usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_MATERIAL_MATTE"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_MATERIAL_MATTE) - 144usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_MATERIAL_MATTE) - 168usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_MATERIAL_PHYSICALLY_BASED"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_MATERIAL_PHYSICALLY_BASED) - 148usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_MATERIAL_PHYSICALLY_BASED) - 172usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_RENDERER_AMBIENT_LIGHT"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_RENDERER_AMBIENT_LIGHT) - 152usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_RENDERER_AMBIENT_LIGHT) - 176usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_RENDERER_BACKGROUND_COLOR"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_RENDERER_BACKGROUND_COLOR) - 156usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_RENDERER_BACKGROUND_COLOR) - 180usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_RENDERER_BACKGROUND_IMAGE"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_RENDERER_BACKGROUND_IMAGE) - 160usize];
-    ["Offset of field: ANARIExtensions::ANARI_KHR_SAMPLER_IMAGE1D"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_SAMPLER_IMAGE1D) - 164usize];
-    ["Offset of field: ANARIExtensions::ANARI_KHR_SAMPLER_IMAGE2D"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_SAMPLER_IMAGE2D) - 168usize];
-    ["Offset of field: ANARIExtensions::ANARI_KHR_SAMPLER_IMAGE3D"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_SAMPLER_IMAGE3D) - 172usize];
-    ["Offset of field: ANARIExtensions::ANARI_KHR_SAMPLER_PRIMITIVE"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_SAMPLER_PRIMITIVE) - 176usize];
-    ["Offset of field: ANARIExtensions::ANARI_KHR_SAMPLER_TRANSFORM"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_SAMPLER_TRANSFORM) - 180usize];
-    ["Offset of field: ANARIExtensions::ANARI_KHR_SPATIAL_FIELD_NANOVDB"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_SPATIAL_FIELD_NANOVDB) - 184usize];
-    ["Offset of field: ANARIExtensions::ANARI_KHR_SPATIAL_FIELD_STRUCTURED_REGULAR_CUBIC"][::std::mem::offset_of!(
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_RENDERER_BACKGROUND_IMAGE) - 184usize];
+    ["Offset of field: ANARIExtensions::ANARI_KHR_RENDERER_DENOISE"]
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_RENDERER_DENOISE) - 188usize];
+    ["Offset of field: ANARIExtensions::ANARI_KHR_SAMPLER_IMAGExD_CLAMP_TO_BORDER"][::std::mem::offset_of!(
         ANARIExtensions,
-        ANARI_KHR_SPATIAL_FIELD_STRUCTURED_REGULAR_CUBIC
+        ANARI_KHR_SAMPLER_IMAGExD_CLAMP_TO_BORDER
+    ) - 192usize];
+    ["Offset of field: ANARIExtensions::ANARI_KHR_SAMPLER_PRIMITIVE"]
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_SAMPLER_PRIMITIVE) - 196usize];
+    ["Offset of field: ANARIExtensions::ANARI_KHR_SAMPLER_TRANSFORM"]
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_SAMPLER_TRANSFORM) - 200usize];
+    ["Offset of field: ANARIExtensions::ANARI_KHR_SPATIAL_FIELD_NANOVDB"]
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_SPATIAL_FIELD_NANOVDB) - 204usize];
+    ["Offset of field: ANARIExtensions::ANARI_KHR_SPATIAL_FIELD_STRUCTURED_REGULAR_FILTER_CUBIC"][::std::mem::offset_of!(
+        ANARIExtensions,
+        ANARI_KHR_SPATIAL_FIELD_STRUCTURED_REGULAR_FILTER_CUBIC
     )
-        - 188usize];
+        - 208usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_SPATIAL_FIELD_UNSTRUCTURED"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_SPATIAL_FIELD_UNSTRUCTURED) - 192usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_SPATIAL_FIELD_UNSTRUCTURED) - 212usize];
     ["Offset of field: ANARIExtensions::ANARI_KHR_VOLUME_TRANSFER_FUNCTION1D"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_VOLUME_TRANSFER_FUNCTION1D) - 196usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_KHR_VOLUME_TRANSFER_FUNCTION1D) - 216usize];
     ["Offset of field: ANARIExtensions::ANARI_EXP_VOLUME_SAMPLE_RATE"]
-        [::std::mem::offset_of!(ANARIExtensions, ANARI_EXP_VOLUME_SAMPLE_RATE) - 200usize];
+        [::std::mem::offset_of!(ANARIExtensions, ANARI_EXP_VOLUME_SAMPLE_RATE) - 220usize];
 };
 extern "C" {
     pub fn anariGetDeviceExtensionStruct(

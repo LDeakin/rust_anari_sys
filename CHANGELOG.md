@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- **Breaking**: Bump `ANARI-SDK` to 0.16.0
+  - `AnariExtensions` field changes:
+    - Added `ANARI_KHR_CAMERA_ROLLING_SHUTTER`
+    - Added `ANARI_KHR_GEOMETRY_ISOSURFACE`
+    - Added `ANARI_KHR_INSTANCE_TRANSFORM_ARRAY`
+    - Added `ANARI_KHR_LIGHT_PRIMARY_VISIBILITY`
+    - Added `ANARI_KHR_RENDERER_DENOISE`
+    - Added `ANARI_KHR_SAMPLER_IMAGExD_CLAMP_TO_BORDER`
+    - Renamed `ANARI_KHR_SPATIAL_FIELD_STRUCTURED_REGULAR_CUBIC` to `ANARI_KHR_SPATIAL_FIELD_STRUCTURED_REGULAR_FILTER_CUBIC`
+    - Removed `ANARI_KHR_AREA_LIGHTS`
+    - Fields have been reordered
+
 ## [0.2.0+anari.0.15.0] - 2025-11-08
 
 ### Added
